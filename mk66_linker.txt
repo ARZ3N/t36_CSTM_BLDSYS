@@ -1,0 +1,54 @@
+COMMANDS- ENTRY, MEMORY, SECTIONS, KEEP, ALIGN, AT>
+
+ENTRY- used to set the entry point address information in the header file.
+-Reset handler could be the entry point of the embedded application.
+-Debugger uses this to locate the first piece of executable code.
+== Syntax -> Entry(_symbol name_) ; ex- Entry(Reset_Handler)
+
+MEMORY- describe the different memories present in the target and their start addresses to merged sections.
+-linker uses information mentioned in this command to assign addrs to merged sections.
+Also calculates the total code and data memory. Throw errors in case of overflows.
+-cmd can be used for fine tuning various memories available in the target and allow different sections to occupy different memory areas.
+-Typically one linker script has one Memory cmd.
+== Syntax-> 
+MEMORY{
+    name(attr) : ORIGIN = origin, Length=len
+}
+Attribute (attr) list-
+W - read/write sections
+R - read-only sections
+X - sections containing executable code
+A - allocated sections
+I - Initialized sections
+L - same as 'I'
+! - invert the sense of any of the above attrs
+
+SECTIONS- used to create different output sections in the final elf executable generated.
+-Important cmd by which you can instruct the linker how ot merge the input sections to yield an output section.
+-This also controls the order in which different output sections appear in the elf file.
+-using this cmd, you also mention the placement of a section in a memory region. 
+-ex: you can instruct the linker to place the .text section in the FLASH memory region, which is described with the MEMORY cmd.
+==Syntax->
+SECTIONS{
+    /*this ection should include .text sect of all i/p files*/
+    .text{
+        //merge all .isr_vectors sections of all i/p files
+        //merge all .text sections of all ip files
+        //merge all .rodata sec ... 
+
+    }>(vma)AT>(lma)
+
+    .data{
+        /*this ection should include .data section of all inp files*/
+        //merge all .data section of all i/p files
+    }>(vma)AT>(lma)
+}
+
+LOCATION Counter (.) -linker automatically updates this symbol with location(address) information
+- you can use this symbol inside the linker script to track and define boundaries of various sections
+-you can set location counter to any specific value while writing linker script
+-location counter should appear only inside the SECTIONS cmd
+-location counter in incremented by the size of the output section
+-at the beginning, location encounter is set to virtaul memory address or vma, that is, the FLASH starting addr. This is assumed by the linker.
+-location counter always tracks VMA! [NOT LMA!]
+-As a rule of thumb, consider ALIGNING THE LOCATION COUNTER AT THE END OF EVERY SECTION.
