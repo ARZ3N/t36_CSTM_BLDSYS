@@ -36,7 +36,7 @@ void DMA_11_27_TX_IRQHandler(void) 		__attribute__((weak, alias("Default Handler
 void DMA_12_28_TX_IRQHandler(void) 		__attribute__((weak, alias("Default Handler")));
 void DMA_13_29_TX_IRQHandler(void) 		__attribute__((weak, alias("Default Handler")));
 void DMA_14_30_TX_IRQHandler(void) 		__attribute__((weak, alias("Default Handler")));
-void DMA_15_31_TX_IRQHnadler(void) 		__attribute__((weak, alias("Default Handler")));
+void DMA_15_31_TX_IRQHandler(void) 		__attribute__((weak, alias("Default Handler")));
 void DMA_ERR_IRQHandler(void) 			__attribute__((weak, alias("Default Handler")));
 void MCM_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void FLASH_CMD_CMPLT_IRQHandler(void) 	__attribute__((weak, alias("Default Handler")));
@@ -122,6 +122,39 @@ uint32_t vectors[]	__attribute__((section(".isr_vectors"))) = {
 	STACK_START,
 	(uint32_t)&Reset_Handler,
 	(uint32_t)&NMI_Handler,
+	(uint32_t)&Hardfault_Handler,
+	(uint32_t)&MemManage_Handler,
+	(uint32_t)&BusFault_Handler,
+	(uint32_t)&UsageFault_Handler,
+	0,
+	0,
+	0,
+	0,
+	(uint32_t)&SVC_Handler,
+	(uint32_t)&DebugMonitor_Handler,
+	0,
+	(uint32_t)&PendSV_Handler,
+	(uint32_t)&SysTick_Handler,
+	(uint32_t)&DMA_0_16_TX_IRQHandler,
+	(uint32_t)&DMA_1_17_TX_IRQHandler,
+	(uint32_t)&DMA_2_18_TX_IRQHandler,
+	(uint32_t)&DMA_3_19_TX_IRQHandler,
+	(uint32_t)&DMA_4_20_TX_IRQHandler,
+	(uint32_t)&DMA_5_21_TX_IRQHandler,
+	(uint32_t)&DMA_6_22_TX_IRQHandler,
+	(uint32_t)&DMA_7_23_TX_IRQHandler,
+	(uint32_t)&DMA_8_24_TX_IRQHandler,
+	(uint32_t)&DMA_9_25_TX_IRQHandler,
+	(uint32_t)&DMA_10_26_TX_IRQHandler,
+	(uint32_t)&DMA_11_27_TX_IRQHandler,
+	(uint32_t)&DMA_12_28_TX_IRQHandler,
+	(uint32_t)&DMA_13_29_TX_IRQHandler,
+	(uint32_t)&DMA_14_30_TX_IRQHandler,
+	(uint32_t)&DMA_15_31_TX_IRQHandler,
+	(uint32_t)&DMA_ERR_IRQHandler,
+	(uint32_t)&MCM_IRQHandler,
+	(uint32_t)&FLASH_CMD_CMPLT_IRQHandler,
+
 };
 
 void Default_Handler(void){
