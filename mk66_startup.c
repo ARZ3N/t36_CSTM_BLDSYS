@@ -46,7 +46,7 @@ void LLWU_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void WDOG_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void RNG_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void I2C0_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
-void I2C1_IRQHnadler(void) 				__attribute__((weak, alias("Default Handler")));
+void I2C1_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void I2C2_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void I2C3_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void SPI0_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
@@ -154,7 +154,18 @@ uint32_t vectors[]	__attribute__((section(".isr_vectors"))) = {
 	(uint32_t)&DMA_ERR_IRQHandler,
 	(uint32_t)&MCM_IRQHandler,
 	(uint32_t)&FLASH_CMD_CMPLT_IRQHandler,
-
+	(uint32_t)&FLASH_RD_COLSN_IRQHandler,
+	(uint32_t)&Mode_Cntrl_IRQHandler,
+	(uint32_t)&LLWU_IRQHandler,
+	(uint32_t)&WDOG_IRQHandler,
+	(uint32_t)&RNG_IRQHandler,
+	(uint32_t)&I2C0_IRQHandler,
+	(uint32_t)&I2C1_IRQHandler,
+	(uint32_t)&SPI0_IRQHandler,
+	(uint32_t)&SPI1_IRQHandler,
+	(uint32_t)&I2S0_TX_IRQHandler,
+	(uint32_t)&I2S0_RX_IRQHandler,
+	0,
 };
 
 void Default_Handler(void){
