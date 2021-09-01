@@ -118,6 +118,10 @@ void TPM2_IRQHandler(void) 				__attribute__((weak, alias("Default Handler")));
 void USBHS_DCD_Phy_IRQHandler(void) 	__attribute__((weak, alias("Default Handler")));
 void USBHS_OTG_IRQHandler(void) 		__attribute__((weak, alias("Default Handler")));
 
+//==================================================================================================
+/**
+ * 	------------------------------------------ VECTOR TABLE ------------------------------------
+ */ 
 uint32_t vectors[]	__attribute__((section(".isr_vectors"))) = {
 	STACK_START,
 	(uint32_t)&Reset_Handler,
